@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-tooling"
+version = "0.1.0"
+description = "Provider-neutral LLM client library with composable workflows."
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.0"]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.20"]
+openai = ["openai>=1.0"]
+all = ["ai-tooling[anthropic,openai]"]
+dev = ["pytest", "pytest-cov", "ruff", "mypy"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_tooling"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S", "PTH"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
